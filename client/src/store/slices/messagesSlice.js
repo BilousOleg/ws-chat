@@ -34,10 +34,16 @@ const messagesSlice = createSlice({
       state.messages.push(payload);
     },
     deleteMessageSuccess: (state, { payload }) => {
+      state.error = null;
       state.messages = state.messages.filter(
         message => message._id !== payload._id
       );
+    },
+    updateMessageSuccess: (state, { payload }) => {
       state.error = null;
+      state.messages = state.messages.map(message =>
+        message._id === payload._id ? payload : message
+      );
     },
     setSocketError: (state, { payload }) => {
       state.error = payload;
@@ -63,7 +69,11 @@ const messagesSlice = createSlice({
 
 const { reducer, actions } = messagesSlice;
 
-export const { createMessageSuccess, deleteMessageSuccess, setSocketError } =
-  actions;
+export const {
+  createMessageSuccess,
+  deleteMessageSuccess,
+  updateMessageSuccess,
+  setSocketError,
+} = actions;
 
 export default reducer;

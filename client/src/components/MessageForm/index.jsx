@@ -1,18 +1,12 @@
 import { Formik, Form, Field } from 'formik';
-import { ws } from '../../api';
 
-function MessageForm () {
-  const addMessage = (values, formikBag) => {
-    ws.createMessage(values);
-    formikBag.resetForm();
-  };
-
-  const initialValues = {
-    body: '',
-  };
-
+function MessageForm ({ initialValues, onSubmit }) {
   return (
-    <Formik initialValues={initialValues} onSubmit={addMessage}>
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      enableReinitialize
+    >
       <Form>
         <Field name='body' />
         <button type='submit'>Send</button>

@@ -1,7 +1,7 @@
 import { useLayoutEffect } from 'react';
 import MessagesListItem from './MessagesListItem';
 
-function MessagesList ({ messages, isFetching, error, onDelete }) {
+function MessagesList ({ messages, isFetching, error, onDelete, onEdit }) {
   useLayoutEffect(() => {
     window.scrollTo({
       top: document.body.scrollHeight,
@@ -19,8 +19,13 @@ function MessagesList ({ messages, isFetching, error, onDelete }) {
 
   return (
     <ol>
-      {messages.map(({ _id, body }) => (
-        <MessagesListItem key={_id} id={_id} body={body} onDelete={onDelete} />
+      {messages.map(message => (
+        <MessagesListItem
+          key={message._id}
+          message={message}
+          onDelete={onDelete}
+          onEdit={onEdit}
+        />
       ))}
     </ol>
   );

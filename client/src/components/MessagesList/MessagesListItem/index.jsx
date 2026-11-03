@@ -1,8 +1,9 @@
-function MessagesListItem ({ id, body, onDelete }) {
+function MessagesListItem ({ message, onDelete, onEdit }) {
   return (
-    <li key={id}>
-      <p>{body}</p>
-      <button onClick={() => onDelete(id)}>Del</button>
+    <li>
+      <p>{message.body}</p>
+      <button onClick={() => onDelete(message._id)}>Del</button>
+      <button onClick={() => onEdit(message)}>Upd</button>
     </li>
   );
 }
