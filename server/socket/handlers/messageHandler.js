@@ -43,8 +43,6 @@ module.exports = io => {
         }
       );
 
-      console.log(updatedMessage);
-
       io.emit(UPDATE_MESSAGE_SUCCESS, updatedMessage);
     } catch (err) {
       socket.emit(UPDATE_MESSAGE_ERROR, {

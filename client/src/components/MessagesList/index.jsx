@@ -1,5 +1,6 @@
 import { useLayoutEffect } from 'react';
 import MessagesListItem from './MessagesListItem';
+import styles from './MessagesList.module.sass';
 
 function MessagesList ({ messages, isFetching, error, onDelete, onEdit }) {
   useLayoutEffect(() => {
@@ -18,7 +19,7 @@ function MessagesList ({ messages, isFetching, error, onDelete, onEdit }) {
   }
 
   return (
-    <ol>
+    <ol className={styles.messagesList}>
       {messages.map(message => (
         <MessagesListItem
           key={message._id}

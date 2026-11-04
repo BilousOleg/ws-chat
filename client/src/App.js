@@ -4,6 +4,7 @@ import { getMessagesThunk } from './store/slices/messagesSlice';
 import MessagesList from './components/MessagesList';
 import MessageForm from './components/MessageForm';
 import { ws } from './api';
+import styles from './App.module.sass';
 import CONSTANTS from './constants';
 
 const { EMPTY_MESSAGE } = CONSTANTS;
@@ -40,7 +41,7 @@ function App ({ messages, isFetching, error, limit, get }) {
   };
 
   return (
-    <>
+    <div className={styles.appWrapper}>
       <MessagesList
         messages={messages}
         isFetching={isFetching}
@@ -48,9 +49,8 @@ function App ({ messages, isFetching, error, limit, get }) {
         onDelete={deleteMessageById}
         onEdit={updateMessageById}
       />
-      <hr />
       <MessageForm initialValues={formInitialValues} onSubmit={handleSubmit} />
-    </>
+    </div>
   );
 }
 

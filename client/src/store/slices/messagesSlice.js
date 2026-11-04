@@ -33,6 +33,8 @@ const messagesSlice = createSlice({
       }
       state.messages.push(payload);
     },
+    // Видаляю повідомлення зі стану без додаткового завантаження, без додаткового завантаження
+    // адже не знаю, що в такому разі робити (тут або розсинхронізація із сервером, або зайвий http-запит)
     deleteMessageSuccess: (state, { payload }) => {
       state.error = null;
       state.messages = state.messages.filter(
