@@ -1,18 +1,16 @@
-import { useLayoutEffect } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import MessagesListItem from './MessagesListItem';
 import styles from './MessagesList.module.sass';
 
-function MessagesList ({ messages, isFetching, error, onDelete, onEdit }) {
+function MessagesList ({ messages, isFetching, onDelete, onEdit }) {
+  const messagesEndRef = useRef(null);
+
   useLayoutEffect(() => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
+    messagesEndRef.current?.scrollIntoView({
       behavior: 'smooth',
+      block: 'end',
     });
   }, [messages.length]);
-
-  if (error) {
-    return <div style={{ color: 'red' }}>ERROR!!!</div>;
-  }
 
   if (isFetching) {
     return <div>Messages are loading. Please, wait...</div>;
@@ -28,6 +26,7 @@ function MessagesList ({ messages, isFetching, error, onDelete, onEdit }) {
           onEdit={onEdit}
         />
       ))}
+      <li ref={messagesEndRef} />
     </ol>
   );
 }

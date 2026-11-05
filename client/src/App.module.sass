@@ -1,3 +1,5 @@
+@use './assets/_colors' as c
+
 .appWrapper
   display: flex
   flex-direction: column
@@ -5,7 +7,7 @@
   width: min(700px, calc(100% - 32px))
   margin: 40px auto
   padding: 24px
-  background: #ffffff
-  border: 1px solid #e5e7eb
-  border-radius: 16px
+  background: c.$main-color-light
+  border: 1px solid c.$border-color-light
+  border-radius: 1rem
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06)

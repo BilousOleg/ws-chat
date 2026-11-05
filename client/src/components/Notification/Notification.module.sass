@@ -1,0 +1,45 @@
+@use '../../assets/_colors' as c
+
+.notification
+  position: fixed
+  left: 50%
+  top: 0
+  z-index: 1000
+  display: flex
+  justify-content: space-between
+  align-items: center
+  gap: 1rem
+  min-width: 18rem
+  max-width: 30rem
+  padding: 0.9375rem 1.25rem
+  font-size: 1rem
+  border-radius: 0.5rem
+  color: c.$main-text-color
+  box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 15%)
+  transform: translate(-50%, -100%) 
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)
+
+  &.isActive
+    transform: translate(-50%, 5.25rem)
+
+  &.success 
+    background-color: c.$success-color
+
+  &.error
+    background-color: c.$error-color
+
+  .closeBtn
+    font-size: 1.1rem
+    border: 1px solid c.$border-color-light
+    border-radius: 0.5rem
+    background: transparent
+    color: c.$main-text-color
+    cursor: pointer
+
+    &:hover
+      border-color: c.$main-color-dark
+      color: c.$main-color-dark
+
+    &:active
+      border-color: c.$muted-text-color
+      color: c.$muted-text-color

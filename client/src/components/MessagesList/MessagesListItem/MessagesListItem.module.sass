@@ -1,3 +1,13 @@
+@use '../../../assets/_colors' as c
+
+%button
+  padding: 0.25rem 0.5rem
+  border: none
+  border-radius: 0.375rem
+  font-weight: 600
+  cursor: pointer
+  transition: background 0.2s, color 0.2s
+
 .message
   display: flex
   flex-direction: column
@@ -5,14 +15,14 @@
   gap: 0.625rem
   max-width: 85%
   padding: 0.875rem 1rem
-  background: #ffffff
-  border: 1px solid #e2e8f0
+  background: c.$main-color-light
+  border: 1px solid c.$border-color-light
   border-radius: 4px 14px 14px 14px
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03)
 
   p
     margin: 0
-    color: #334155
+    color: c.$main-text-color
     font-size: 0.9375rem
     line-height: 1.5
     overflow-wrap: anywhere
@@ -20,28 +30,22 @@
 .buttons
   display: flex
   justify-content: flex-end
-  gap: 8px
+  gap: 0.5rem
 
-  button
-    padding: 0.25rem 0.5rem
-    border: none
-    border-radius: 0.375rem
-    font-weight: 600
-    cursor: pointer
-    transition: background 0.2s, color 0.2s
+  .deleteBtn
+    @extend %button
+    color: c.$error-color
+    background: #fef2f2
 
-    &:first-child
-      color: #dc2626
-      background: #fef2f2
+    &:hover
+      color: c.$main-color-light
+      background: c.$error-color
 
-      &:hover
-        color: #ffffff
-        background: #dc2626
-
-    &:last-child
-      color: #2563eb
-      background: #eff6ff
-
-      &:hover
-        color: #ffffff
-        background: #2563eb
+  .editBtn
+    @extend %button
+    color: c.$edit-color
+    background: #eff6ff
+    
+    &:hover
+      color: c.$main-color-light
+      background: c.$edit-color

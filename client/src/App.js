@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { getMessagesThunk } from './store/slices/messagesSlice';
+import { ws } from './api';
 import MessagesList from './components/MessagesList';
 import MessageForm from './components/MessageForm';
-import { ws } from './api';
+import Notification from './components/Notification';
 import styles from './App.module.sass';
 import CONSTANTS from './constants';
 
@@ -42,6 +43,7 @@ function App ({ messages, isFetching, error, limit, get }) {
 
   return (
     <div className={styles.appWrapper}>
+      <Notification />
       <MessagesList
         messages={messages}
         isFetching={isFetching}

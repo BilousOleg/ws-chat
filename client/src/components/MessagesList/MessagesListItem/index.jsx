@@ -7,10 +7,13 @@ function MessagesListItem ({ message, onDelete, onEdit }) {
     <li className={styles.message}>
       <p>{message.body}</p>
       <section className={styles.buttons}>
-        <button onClick={() => onDelete(message._id)}>
+        <button
+          className={styles.deleteBtn}
+          onClick={() => onDelete(message._id)}
+        >
           <DeleteIcon />
         </button>
-        <button onClick={() => onEdit(message)}>
+        <button className={styles.editBtn} onClick={() => onEdit(message)}>
           <EditIcon />
         </button>
       </section>

@@ -5,6 +5,7 @@ import {
   deleteMessageSuccess,
   updateMessageSuccess,
 } from '../store/slices/messagesSlice';
+import { showNotification } from '../store/slices/notificationSlice';
 import CONSTANTS from './../constants';
 
 const {
@@ -41,17 +42,43 @@ export const bringStoreToSocket = store => {
   });
   socket.on(CREATE_MESSAGE_ERROR, error => {
     store.dispatch(setSocketError(error));
+    store.dispatch(
+      showNotification({
+        message: error.message,
+        type: 'error',
+      })
+    );
   });
   socket.on(DELETE_MESSAGE_SUCCESS, payload => {
     store.dispatch(deleteMessageSuccess(payload));
   });
   socket.on(DELETE_MESSAGE_ERROR, error => {
     store.dispatch(setSocketError(error));
+    store.dispatch(
+      showNotification({
+        message: error.message,
+        type: 'error',
+      })
+    );
   });
   socket.on(UPDATE_MESSAGE_SUCCESS, payload => {
     store.dispatch(updateMessageSuccess(payload));
   });
   socket.on(UPDATE_MESSAGE_ERROR, error => {
     store.dispatch(setSocketError(error));
+    store.dispatch(
+      showNotification({
+        message: error.message,
+        type: 'error',
+      })
+    );
+  });
+  socket.on('connect_error', error => {
+    store.dispatch(
+      showNotification({
+        message: error.message,
+        type: 'error',
+      })
+    );
   });
 };
